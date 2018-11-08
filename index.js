@@ -6,7 +6,7 @@ var networkLib = {};
 networkLib.version = 'v' + require('./package.json').version;
 
 networkLib.Networks = require('./lib/networks');
-networkLib.Unit = require('./lib/Unit');
+networkLib.Unit = require('./lib/unit');
 networkLib.URI = require('./lib/uri');
 
 module.exports = networkLib;

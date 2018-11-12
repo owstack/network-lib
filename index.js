@@ -1,12 +1,9 @@
 'use strict';
 
-var networkLib = {};
+var Networks = require('./lib/networks');
 
-// Module information
-networkLib.version = 'v' + require('./package.json').version;
+Networks.Unit = require('./lib/unit');
+Networks.URI = require('./lib/uri');
+Networks.version = 'v' + require('./package.json').version;
 
-networkLib.Networks = require('./lib/networks');
-networkLib.Unit = require('./lib/unit');
-networkLib.URI = require('./lib/uri');
-
-module.exports = networkLib;
+module.exports = Networks;

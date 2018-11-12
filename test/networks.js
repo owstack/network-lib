@@ -3,8 +3,7 @@
 var expect = require('chai').expect;
 var should = require('chai').should();
 
-var networkLib = require('..');
-var Networks = networkLib.Networks;
+var Networks = require('..');
 var lodash = require('lodash');
 
 describe('Networks', function() {
@@ -14,7 +13,7 @@ describe('Networks', function() {
   it('should be able to define a custom Network', function() {
     var custom = {
       name: 'customnet',
-      symbol: 'customnet',
+      code: 'customnet',
       coin: 0x81234567,
       prefix: {
         pubkeyhash: 0x10,
@@ -62,7 +61,7 @@ describe('Networks', function() {
   it('should not set a network map for an undefined value', function() {
     var custom = {
       name: 'somenet',
-      symbol: 'somenet',
+      code: 'somenet',
       coin: 0x81234567,
       prefix: {
         pubkeyhash: 0x13,
@@ -93,7 +92,7 @@ describe('Networks', function() {
 
   var masterConstants = [
     'name',
-    'symbol',
+    'code',
     'version.xpubkey',
     'version.xprivkey'
   ];
@@ -116,12 +115,13 @@ describe('Networks', function() {
   });
 
   it('converts to string using the "name" property', function() {
+    console.log(Networks.get('ROOT').toString());
     Networks.get('ROOT').toString().should.equal('ROOT');
   });
 
   it('network object should be immutable', function() {
-    expect(Networks.get('ROOT').symbol).to.equal('ROOT')
-    var fn = function() { Networks.get('ROOT').symbol = 'Something else' }
+    expect(Networks.get('ROOT').code).to.equal('ROOT')
+    var fn = function() { Networks.get('ROOT').code = 'Something else' }
     expect(fn).to.throw(TypeError)
   });
 

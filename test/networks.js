@@ -3,8 +3,9 @@
 var expect = require('chai').expect;
 var should = require('chai').should();
 
+var owsCommon = require('@owstack/ows-common');
 var Networks = require('..');
-var lodash = require('lodash');
+var lodash = owsCommon.deps.lodash;
 
 describe('Networks', function() {
 

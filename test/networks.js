@@ -70,8 +70,14 @@ describe('Networks', function() {
         scripthash: 0x11
       },
       version: {
-        xpubkey: 0x0278b20f,
-        xprivkey: 0x0278ade5
+        xpubkey: {
+          bytes: 0x0278b20f,
+          text: ''
+        },
+        xprivkey: {
+          bytes: 0x0278ade5,
+          text: ''
+        }
       },
       networkMagic: 0xe7beb4d5,
       port: 20008,
@@ -94,8 +100,10 @@ describe('Networks', function() {
   var masterConstants = [
     'name',
     'code',
-    'version.xpubkey',
-    'version.xprivkey'
+    'version.xpubkey.bytes',
+    'version.xpubkey.text',
+    'version.xprivkey.bytes',
+    'version.xprivkey.text'
   ];
 
   masterConstants.forEach(function(key) {
@@ -105,13 +113,13 @@ describe('Networks', function() {
   });
 
   it('tests only for the specified key', function() {
-    expect(Networks.get(0x040bee6c, 'version.xprivkey')).to.equal(Networks.defaultNetwork);
-    expect(Networks.get(0x040bee6c, 'version.xpubkey')).to.equal(undefined);
+    expect(Networks.get(0x040bee6c, 'version.xprivkey.bytes')).to.equal(Networks.defaultNetwork);
+    expect(Networks.get(0x040bee6c, 'version.xpubkey.bytes')).to.equal(undefined);
   });
 
   it('can test for multiple keys', function() {
-    expect(Networks.get(0x040bee6c, ['version.xprivkey', 'version.xpubkey'])).to.equal(Networks.get('ROOT'));
-    expect(Networks.get(0x040bf2a6, ['version.xprivkey', 'version.xpubkey'])).to.equal(Networks.get('ROOT'));
+    expect(Networks.get(0x040bee6c, ['version.xprivkey.bytes', 'version.xpubkey.bytes'])).to.equal(Networks.get('ROOT'));
+    expect(Networks.get(0x040bf2a6, ['version.xprivkey.bytes', 'version.xpubkey.bytes'])).to.equal(Networks.get('ROOT'));
     expect(Networks.get(0x0, ['version.xprivkey', 'version.xpubkey'])).to.equal(undefined);
   });
 

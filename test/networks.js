@@ -13,9 +13,9 @@ describe('Networks', function() {
 
   it('should be able to define a custom Network', function() {
     var custom = {
+      description: 'customnet',
       name: 'customnet',
-      code: 'customnet',
-      coin: 0x81234567,
+      coinIndex: 0x81234567,
       prefix: {
         pubkeyhash: 0x10,
         privatekey: 0x90,
@@ -61,9 +61,9 @@ describe('Networks', function() {
 
   it('should not set a network map for an undefined value', function() {
     var custom = {
+      description: 'somenet',
       name: 'somenet',
-      code: 'somenet',
-      coin: 0x81234567,
+      coinIndex: 0x81234567,
       prefix: {
         pubkeyhash: 0x13,
         privatekey: 0x93,
@@ -99,7 +99,6 @@ describe('Networks', function() {
 
   var masterConstants = [
     'name',
-    'code',
     'version.xpubkey.bytes',
     'version.xpubkey.text',
     'version.xprivkey.bytes',
@@ -129,8 +128,8 @@ describe('Networks', function() {
   });
 
   it('network object should be immutable', function() {
-    expect(Networks.get('ROOT').code).to.equal('ROOT')
-    var fn = function() { Networks.get('ROOT').code = 'Something else' }
+    expect(Networks.get('ROOT').name).to.equal('ROOT')
+    var fn = function() { Networks.get('ROOT').name = 'Something else' }
     expect(fn).to.throw(TypeError)
   });
 

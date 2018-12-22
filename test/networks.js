@@ -15,6 +15,7 @@ describe('Networks', function() {
     var custom = {
       description: 'customnet',
       name: 'customnet',
+      currency: 'CUSTOM',
       coinIndex: 0x81234567,
       prefix: {
         pubkeyhash: 0x10,
@@ -93,7 +94,7 @@ describe('Networks', function() {
   });
 
   it('should get the default network', function() {
-    var network = Networks.get('ROOT');
+    var network = Networks.get('root');
     network.should.equal(Networks.defaultNetwork);
   });
 
@@ -107,7 +108,7 @@ describe('Networks', function() {
 
   masterConstants.forEach(function(key) {
     it('should have constant ' + key + ' for all Networks', function() {
-      lodash.has(Networks.get('ROOT'), key).should.equal(true);
+      lodash.has(Networks.get('root'), key).should.equal(true);
     });
   });
 
@@ -117,19 +118,19 @@ describe('Networks', function() {
   });
 
   it('can test for multiple keys', function() {
-    expect(Networks.get(0x040bee6c, ['version.xprivkey.bytes', 'version.xpubkey.bytes'])).to.equal(Networks.get('ROOT'));
-    expect(Networks.get(0x040bf2a6, ['version.xprivkey.bytes', 'version.xpubkey.bytes'])).to.equal(Networks.get('ROOT'));
+    expect(Networks.get(0x040bee6c, ['version.xprivkey.bytes', 'version.xpubkey.bytes'])).to.equal(Networks.get('root'));
+    expect(Networks.get(0x040bf2a6, ['version.xprivkey.bytes', 'version.xpubkey.bytes'])).to.equal(Networks.get('root'));
     expect(Networks.get(0x0, ['version.xprivkey', 'version.xpubkey'])).to.equal(undefined);
   });
 
   it('converts to string using the "name" property', function() {
-    console.log(Networks.get('ROOT').toString());
-    Networks.get('ROOT').toString().should.equal('ROOT');
+    console.log(Networks.get('root').toString());
+    Networks.get('root').toString().should.equal('root');
   });
 
   it('network object should be immutable', function() {
-    expect(Networks.get('ROOT').name).to.equal('ROOT')
-    var fn = function() { Networks.get('ROOT').name = 'Something else' }
+    expect(Networks.get('root').name).to.equal('root')
+    var fn = function() { Networks.get('root').name = 'Something else' }
     expect(fn).to.throw(TypeError)
   });
 
